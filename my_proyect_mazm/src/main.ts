@@ -12,6 +12,7 @@ async function bootstrap() {
     .setTitle('API my_proyect_mazm')
     .setDescription('Documentacion de la API del proyecto NestJS')
     .setVersion('1.0')
+     .addBearerAuth()
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
