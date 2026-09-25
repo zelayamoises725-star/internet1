@@ -13,10 +13,19 @@ provider = "sqlite"
   url      = env("DATABASE_URL")
 }
 
- model User {
+model User {
   id        Int      @id @default(autoincrement())
   email     String   @unique
   name      String?
   password  String
+  createdAt DateTime @default(now())
+  tenantId  Int?
+  tenant    Tenant?  @relation(fields: [tenantId], references: [id])
+}
+
+model Tenant {
+  id        Int      @id @default(autoincrement())
+  name      String
+  users     User[]
   createdAt DateTime @default(now())
 }
